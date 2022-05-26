@@ -6,7 +6,7 @@ import HomeScreen from '../screens/HomeScreen'
 import PostDetailsScreen from '../screens/PostDetailsScreen'
 import SearchScreen from '../screens/SearchScreen'
 import UserScreen from '../screens/UserScreen'
-import UserDetailsScreen from '../screens/PostDetailsScreen'
+import UserDetailsScreen from '../screens/UserDetailsScreen'
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +22,7 @@ const Tab = createBottomTabNavigator();
 
 const HomeTabs = () => {
     return (
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false, tabBarActiveTintColor: '#000' }}>
             <Tab.Screen 
                 name='Home'
                 component={HomeStackNavigator}
@@ -38,7 +38,7 @@ const HomeTabs = () => {
                 options={{
                     tabBarIcon: ({color}) => (
                         <AntDesign name='search1' size={24} color={color} />
-                    )
+                    ),
                 }}
             />
             <Tab.Screen 
@@ -47,7 +47,7 @@ const HomeTabs = () => {
                 options={{
                     tabBarIcon: ({color}) => (
                         <AntDesign name='user' size={24} color={color} />
-                    )
+                    ),
                 }}
             />
         </Tab.Navigator>
