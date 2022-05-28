@@ -9,7 +9,7 @@ const UserScreen = () => {
   const [loading, setLoading] = useState(true);
 
   const getUsers = async () => {
-    const data = await baseManager.getAll("users");  
+    const data = await baseManager.getAll("/users");  
     setUsers(data);
     setLoading(false);
   }

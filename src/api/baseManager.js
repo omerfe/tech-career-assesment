@@ -17,7 +17,7 @@ const baseManager = {
     getEntityById: async (url, id) => {
         let responseData = {};
 
-        await fetch(API_URL + url + "/" + id.toString())
+        await fetch(API_URL + url + "/" + id)
             .then(res => res.json())
             .then((data) => {
                 responseData = data;

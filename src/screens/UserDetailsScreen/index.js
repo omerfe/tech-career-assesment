@@ -1,21 +1,22 @@
 import { View, Text, ActivityIndicator } from 'react-native'
 import {React, useState, useEffect} from 'react'
 import baseManager from '../../api/baseManager';
+import UserDetails from '../../components/UserDetails';
 
-const UserDetailsScreen = (id) => {
+const UserDetailsScreen = ({route}) => {
+  const id = route.params.id;
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
 
   const getUser = () => {
-    baseManager.getEntityById("users", id)
-      .then((data) => {
-        console.log(data);
-        setUser(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-          console.log('ERR', err);
-      })
+   baseManager.getEntityById("/users", id)
+        .then((data) => {
+          setUser(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+            console.log('Error while fetching data:', err);
+        })
   }
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const UserDetailsScreen = (id) => {
     { loading ? 
       <ActivityIndicator size="large"/>
        : 
-      <Text>{user.name}</Text>
+      <UserDetails user={user}/>
     }
     </View>
   )
