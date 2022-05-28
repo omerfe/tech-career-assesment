@@ -13,16 +13,16 @@ const UserScreen = () => {
     setUsers(data);
     setLoading(false);
   }
+  
+  useEffect(() => {
+    getUsers();
+  }, [])
 
   const renderItem = ({ item }) => {
     return (
       <User user={item} />
   )} 
 
-  useEffect(() => {
-    getUsers();
-  }, [])
-  
   return (
     <ScrollView style={{padding: 10}} showsVerticalScrollIndicator={false} >
       { loading ? (
