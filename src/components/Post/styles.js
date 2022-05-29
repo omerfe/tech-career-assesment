@@ -26,7 +26,12 @@ const styles = StyleSheet.create({
     },
     title: {
         fontWeight: '500',
-    }
+    },
+    minsAgo: {
+        color: 'grey',
+        marginLeft: 'auto',
+        fontSize: 12,
+    },
 })
 
 export default styles;

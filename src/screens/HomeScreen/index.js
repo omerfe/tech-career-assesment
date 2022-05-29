@@ -1,46 +1,53 @@
-import { View, Text, ScrollView, ActivityIndicator } from 'react-native'
-import {React, useState, useEffect} from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import baseManager from '../../api/baseManager';
-import Post from '../../components/Post';
+import { View, ScrollView, ActivityIndicator, FlatList } from "react-native";
+import { React, useState, useEffect } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import baseManager from "../../api/baseManager";
+import Post from "../../components/Post";
 
 const HomeScreen = () => {
   const [posts, setPosts] = useState([]);
-
   const [loading, setLoading] = useState(true);
 
   const getPosts = async () => {
-    const data = await baseManager.getAll("/posts");  
+    const data = await baseManager.getAll("/posts");
     setPosts(data);
     setLoading(false);
-  }
+  };
 
   useEffect(() => {
     getPosts();
-  }, [])
+  }, []);
 
-  const shuffleArray = (posts) => {
+  const shufflePostsAndGetFirstTwenty = (posts) => {
     for (var i = posts.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = posts[i];
-        posts[i] = posts[j];
-        posts[j] = temp;
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = posts[i];
+      posts[i] = posts[j];
+      posts[j] = temp;
     }
-    return posts;
-}
+    return posts.slice(0, 20);
+  };
+
+  const renderItem = ({ item }) => {
+    return <Post post={item} />;
+  };
 
   return (
-    
-      <ScrollView style={{padding: 10}} showsVerticalScrollIndicator={false} >
-      { loading ? (
+    <View style={{ padding: 10 }}>
+      {loading ? (
         <View>
-            <ActivityIndicator size="large" />
-        </View>) : 
-        posts && shuffleArray(posts).map((post) => <Post key={post.id} post={post} />)
-      }
-    </ScrollView>
-    
-  )
-}
+          <ActivityIndicator size="large" />
+        </View>
+      ) : (
+        <FlatList
+          data={shufflePostsAndGetFirstTwenty(posts)}
+          keyExtractor={(item) => item.id}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
+    </View>
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;

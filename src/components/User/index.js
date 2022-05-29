@@ -11,7 +11,7 @@ const User = ({user}) => {
       <Pressable onPress={() => navigation.navigate("UserDetails", {id: user.id})} style={styles.container}>
         <View style={styles.row}>
           <Octicons name='verified' size={16}/>
-          <Text style={styles.name}>{user.name}</Text>
+          <Text style={styles.name}>{user.name.slice(0,10)}</Text>
           <Text style={styles.userName}>@{user.username}</Text>
         </View>
         <View style={styles.row}>

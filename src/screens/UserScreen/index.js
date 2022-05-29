@@ -1,4 +1,4 @@
-import { View, Text, Flatlist, ScrollView, ActivityIndicator } from 'react-native'
+import { View, FlatList, ActivityIndicator } from 'react-native'
 import {React, useState, useEffect} from 'react'
 import baseManager from '../../api/baseManager'
 import User from '../../components/User'
@@ -24,18 +24,19 @@ const UserScreen = () => {
   )} 
 
   return (
-    <ScrollView style={{padding: 10}} showsVerticalScrollIndicator={false} >
+    <View style={{padding: 10}} >
       { loading ? (
         <View>
             <ActivityIndicator size="large" />
         </View>) : 
-        users && users.map((user) => <User key={user.id} user={user} />)
-        // <Flatlist 
-        //   data={users} 
-        //   renderItem={renderItem} 
-        // />
+        <FlatList 
+          data={users}
+          keyExtractor={(item) => item.id} 
+          renderItem={renderItem} 
+          showsVerticalScrollIndicator={false} 
+        />
       }
-    </ScrollView>
+    </View>
   )
 }
 

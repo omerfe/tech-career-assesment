@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator } from 'react-native'
+import { View, ActivityIndicator } from 'react-native'
 import {React, useState, useEffect} from 'react'
 import baseManager from '../../api/baseManager';
 import UserDetails from '../../components/UserDetails';
@@ -8,8 +8,8 @@ const UserDetailsScreen = ({route}) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const getUser = () => {
-   baseManager.getEntityById("/users", id)
+  const getUser = async () => {
+   await baseManager.getEntityById("/users", id)
         .then((data) => {
           setUser(data);
           setLoading(false);
