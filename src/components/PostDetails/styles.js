@@ -2,8 +2,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        borderWidth: 1,
-        borderRadius: 5,
         margin: 10,
         padding: 10,
     },
@@ -13,6 +11,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         marginBottom: 10,
         borderBottomWidth: 1,
+        paddingBottom: 5,
     },
     body: {
         
@@ -21,6 +20,7 @@ const styles = StyleSheet.create({
         flexDirection :'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
+        marginTop: 15,
     },
     icon: {
         marginRight: 10,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',       
-        marginTop: 5,
+        marginTop: 10,
         paddingHorizontal: 5,
         paddingVertical: 6,
     },

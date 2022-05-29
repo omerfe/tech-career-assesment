@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react'
 import HomeScreen from '../screens/HomeScreen'
 import PostDetailsScreen from '../screens/PostDetailsScreen'
-import SearchScreen from '../screens/SearchScreen'
 import UserScreen from '../screens/UserScreen'
 import UserDetailsScreen from '../screens/UserDetailsScreen'
 
@@ -30,15 +29,6 @@ const HomeTabs = () => {
                     tabBarIcon: ({color}) => (
                         <AntDesign name='home' size={24} color={color} />
                     )
-                }}
-            />
-            <Tab.Screen 
-                name='Search'
-                component={SearchScreen}
-                options={{
-                    tabBarIcon: ({color}) => (
-                        <AntDesign name='search1' size={24} color={color} />
-                    ),
                 }}
             />
             <Tab.Screen 
